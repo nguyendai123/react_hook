@@ -41,6 +41,7 @@
 .btn-add-new {
     margin: 10px 0;
     cursor: pointer;
+    margin-left: 45% !important;
 }
 
 .add-new-container {
@@ -69,4 +70,54 @@
     }
 
 
+}
+.youtube-search-container{
+    input{
+        outline: none;
+        border: none;
+        min-width: 400px;
+        padding: 5px 10px;
+    }
+    button{
+        outline: none;
+        padding: 5px 10px;
+        border: none;
+    }
+    .youtube-search{
+
+
+        
+    }
+    .yt-result{
+        
+        display: flex;
+        margin-top: 20px;
+        padding: 10px;
+        width: 100%;
+        padding: 0 100px;
+        .left{
+           
+            width:25%;
+            .yt-result-iframe{
+                width: 100%;
+                min-width: 300px;
+                height: 300px;
+            }
+        }
+        .right{
+            text-align: left;
+            margin: 0 20px;
+            width: 60%;
+            padding: 5px;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            gap:20px;
+
+            .title{
+                font-size: 18px;
+                font-weight: 600;
+            }
+        }
+    }
 }
