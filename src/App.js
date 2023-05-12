@@ -10,6 +10,7 @@ import DetailBlog from "./views/DetailBlog";
 import AddNewBlog from "./views/AddNewBlog";
 import NotFound from "./views/NotFound";
 import YoutubeSearch from "./views/YoutubeSearch";
+
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 // template + logic
@@ -28,6 +29,7 @@ const App = () => {
     { id: "todo3", title: "Playing game", type: "hoidanit" },
     { id: "todo4", title: "Reading books", type: "hoidanit" },
   ]);
+  const [editTodo, setEditTodo] = useState({}); //
 
   //didmount
   useEffect(() => {
@@ -63,6 +65,33 @@ const App = () => {
     currentTodos = currentTodos.filter((item) => item.id !== id);
     setTodos(currentTodos);
   };
+  const changeEditTodo = (event) => {
+    let editTodoCopy = { ...editTodo };
+    console.log("change", editTodoCopy);
+    editTodoCopy.title = event.target.value;
+    setEditTodo(editTodoCopy);
+  };
+  const handleEditTodo = (todo) => {
+    let isEmptyObj = Object.keys(editTodo).length === 0;
+    console.log("checktodo", isEmptyObj);
+    //save
+    if (isEmptyObj === false && editTodo.todo.id === todo.id) {
+      let objIndex = todos.findIndex((item) => item.id === todo.id);
+
+      //Update object's name property.
+      todos[objIndex].title = editTodo.title;
+      // this.setState({ editTodo: {} });
+      setEditTodo({});
+      // this.setState({todos: todos});
+
+      return;
+    }
+    setEditTodo({ todo });
+
+    // this.setState({
+    //   editTodo: todo,
+    // });
+  };
 
   const onTimesup = () => {
     //alert("times up");
@@ -93,11 +122,17 @@ const App = () => {
               todos={todos}
               title={"All todos"}
               deleteDataTodo={deleteDataTodo}
+              editTodo={editTodo}
+              handleEditTodo={handleEditTodo}
+              changeEditTodo={changeEditTodo}
             />
             <Todo
               todos={todos.filter((item) => item.type === "eric")}
               title={`eric todos`}
               deleteDataTodo={deleteDataTodo}
+              editTodo={editTodo}
+              handleEditTodo={handleEditTodo}
+              changeEditTodo={changeEditTodo}
             />
             <input
               type="text"
